@@ -21,8 +21,9 @@ model: haiku
    `| video-NN | дата | тема | хук (приём + суть) | приёмы сцен | BGM | заметки |`
    Заметки — что поймал терчек, это читает следующий ролик.
 2. Написать опись ролика для монтажного стола —
-   `engine/src/videos/video-NN/workbench.ts`. Образец — `video-05`,
-   фабрика — `engine/src/lib/workbench.tsx`.
+   `engine/src/videos/video-NN/workbench.ts`. Образец —
+   `engine/src/videos/demo/workbench.ts`, фабрика —
+   `engine/src/lib/workbench.tsx`.
 
    **Ни одного своего числа.** Всё берётся импортом из data-файлов ролика;
    сверить с корнем композиции (`VideoNN<Ветка>.tsx`) надо только пять

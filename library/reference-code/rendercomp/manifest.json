@@ -1,0 +1,50 @@
+{
+  "repository": "https://github.com/RenderComp/free-remotion-templates",
+  "commit": "f648980e528defb7594e24c6447055f0540f340b",
+  "license": "MIT",
+  "status": "Reference source only; not imported into production or rendered locally",
+  "files": [
+    {
+      "path": "LICENSE",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/LICENSE",
+      "sha256": "3e0f0f2895a6bf2b5aa9d03aa4a6b68679a7d037d54f24177f99748084a58444",
+      "bytes": 1069
+    },
+    {
+      "path": "ASSETS.md",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/ASSETS.md",
+      "sha256": "6068d4012797bdd911bfbb1ecd3f2e9b2d8cde898c82b58cda5716fbb5b0d04e",
+      "bytes": 934
+    },
+    {
+      "path": "src/components/flip-page-transition/FlipPageTransition.tsx",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/src/components/flip-page-transition/FlipPageTransition.tsx",
+      "sha256": "522b2230ddc49b30ca4b06d1478c6ce0474637c53b4385e23976193e83a6a704",
+      "bytes": 7905
+    },
+    {
+      "path": "src/components/parallax-pan/ParallaxPan.tsx",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/src/components/parallax-pan/ParallaxPan.tsx",
+      "sha256": "a6cb3ecbc902ec73fae7d4b6d52edf96f2549c520ee8c0a2ad4aee641355d2ab",
+      "bytes": 7622
+    },
+    {
+      "path": "src/components/split-screen/SplitScreen.tsx",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/src/components/split-screen/SplitScreen.tsx",
+      "sha256": "744a291d361ed11d6ceefdad3339018d5663eb3a7ce21c374853af1bdbaf2b3a",
+      "bytes": 8630
+    },
+    {
+      "path": "src/components/text-mask-reveal/TextMaskReveal.tsx",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/src/components/text-mask-reveal/TextMaskReveal.tsx",
+      "sha256": "bb8fbe64c4a39c339ffe92a7a269c8d3ee5c0bfec9c0139a409bf2c40ebd361a",
+      "bytes": 6438
+    },
+    {
+      "path": "src/components/thinking-bubble/ThinkingBubble.tsx",
+      "source": "https://raw.githubusercontent.com/RenderComp/free-remotion-templates/f648980e528defb7594e24c6447055f0540f340b/src/components/thinking-bubble/ThinkingBubble.tsx",
+      "sha256": "d0a866eb5e79a6ff5f7dc2bcf88dcb1c997c7f6d99043bdde27ac5c41ad285df",
+      "bytes": 9037
+    }
+  ]
+}

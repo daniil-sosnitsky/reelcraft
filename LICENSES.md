@@ -24,6 +24,21 @@ Apache License 2.0 (`licenses/video-shotcraft-Apache-2.0.txt`, атрибуци�
 и банк звуковых эффектов в репозиторий не включены: они берутся из клона
 первоисточника (INSTALL.md, шаги 3 и 5).
 
+## Банк образцов кода
+
+**RenderComp free-remotion-templates** —
+[github.com/RenderComp/free-remotion-templates](https://github.com/RenderComp/free-remotion-templates),
+MIT (© Trimora Inc.). Пять самостоятельных TSX-компонентов лежат в
+`library/reference-code/rendercomp/` вместе с текстом MIT, описью `ASSETS.md` и
+`manifest.json`, где у каждого файла зафиксированы точный URL, commit и
+SHA-256.
+
+Это **банк исходников для чтения**, а не установленный пакет: в `engine`
+они не импортированы и зависимостей не добавляют. Что из них изучать и что
+адаптировать перед применением — `reference-code/rendercomp/README-reelcraft.md`.
+MIT разрешает и использование, и перевыкладывание при сохранении текста
+лицензии — он сохранён.
+
 ## Звук
 
 - **SFX** — из библиотеки video-shotcraft (Apache-2.0). В репозитории только

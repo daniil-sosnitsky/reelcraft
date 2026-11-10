@@ -37,7 +37,7 @@ void loadFont({ family: 'PT Serif', url: ptSerifRegular, weight: '400' });
 void loadFont({ family: 'PT Serif', url: ptSerifBold, weight: '700' });
 
 // Playfair Display (800/900) и Oswald (600) — дисплейная пара темы
-// emerald-velvet (library/style-velvet-plan.md, Э3). Playfair держит
+// emerald-velvet (library/velvet-theme.md). Playfair держит
 // заголовки кеглем 136–164: на таком размере нужен шрифт с контрастом
 // штриха, иначе кадр читается как «ещё один жирный гротеск». Oswald —
 // служебный капс (колонтитулы, подписи колонок, статусы): узкий, поэтому

@@ -88,7 +88,7 @@ engine/
    (`lib/SfxTrack.tsx`) и строится опись для монтажного стола. `at` — кадр
    целевого пика относительным якорем (`SCENES[n].from + k`).
 7. После сдачи — опись ролика `src/videos/video-NN/workbench.ts` (образец:
-   `video-05`, фабрика: `lib/workbench.tsx`). По ней монтажный стол
+   `src/videos/demo/workbench.ts`, фабрика: `lib/workbench.tsx`). По ней монтажный стол
    разбирает ролик на клипы; своих чисел в описи нет, всё импортируется
    из data-файлов. Открыть: `./scripts/workbench.sh NN`.
 

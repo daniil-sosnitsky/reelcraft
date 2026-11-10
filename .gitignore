@@ -1,0 +1,63 @@
+# Рендеры и медиа — не версионируем (тяжёлые; восстанавливаются рендером).
+# Аудио-банки ставятся отдельно: scripts/setup-assets.sh (SFX из клона
+# video-shotcraft) и вручную с mixkit.co (BGM) — см. INSTALL.md, шаг 5.
+renders/
+*.mp4
+*.mov
+*.mp3
+*.wav
+*.m4a
+
+# Вход, слоты и свой футаж — артефакты конкретного ролика и личные записи
+inbox/*
+!inbox/.gitkeep
+!inbox/README.md
+!inbox/_raw/.gitkeep
+!inbox/_done/.gitkeep
+!inbox/screenshots/.gitkeep
+queue/*
+!queue/.gitkeep
+!queue/README.md
+footage/clips/*
+!footage/clips/.gitkeep
+
+# Ассеты конкретных роликов (звук, скрины, клипы) — не в репозиторий
+engine/public/videos/*
+!engine/public/videos/.gitkeep
+
+# Engine: зависимости и рендер-артефакты
+engine/node_modules/
+engine/out/
+engine/.remotion/
+
+# Кэш сборки и headless-браузер — лежат в КОРНЕ проекта, а не в engine/
+# (весят больше лимита GitHub в 100 МБ на файл)
+.cache/
+.remotion/
+out/*
+!out/.gitkeep
+!out/README.md
+
+# Системное
+.DS_Store
+
+# --- Добавлено при установке под Windows (не из кита) ---
+# tools/ — ffmpeg, whisper-cli и модель распознавания (~2.3 ГБ).
+# Восстанавливается по tools/WINDOWS.md, в git ему делать нечего.
+tools/ffmpeg/
+tools/whisper/
+tools/whisper-models/
+
+# --- Радар конкурентов (не из кита) ---
+# Токен Apify и выгрузки: сырые ответы API и скачанные чужие ролики.
+# В репозитории им делать нечего — пересобираются прогоном радара.
+.env
+radar/raw/
+radar/out/
+# Сырьё разборов чужих роликов (style-teardown.sh): исходники, контактные
+# листы, плёнки переходов. Сотни мегабайт, пересобирается по ссылке за минуты.
+# Выводы разбора живут в library/style-reference.md — вот они версионируются.
+radar/style/
+
+# Снимки страниц Playwright MCP — отладочный мусор, в Git не нужен
+.playwright-mcp/

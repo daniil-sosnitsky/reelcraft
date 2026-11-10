@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# caffeinate — macOS-утилита «не давать машине уснуть во время рендера».
+# На Windows не нужна: съедаем её флаги и запускаем саму команду как есть.
+while [ $# -gt 0 ]; do case "$1" in -*) shift ;; *) break ;; esac; done
+exec "$@"

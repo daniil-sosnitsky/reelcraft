@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# В Windows-PATH `python3` — заглушка Microsoft Store: печатает «Python» и
+# выходит, ничего не исполняя. Перенаправляем на настоящий интерпретатор.
+exec python "$@"

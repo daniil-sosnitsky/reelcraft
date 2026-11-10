@@ -1,0 +1,78 @@
+Reelcraft — конвейер вертикальных роликов на Remotion
+=====================================================
+
+Этот проект содержит материалы, производные от:
+
+  video-shotcraft
+  https://github.com/Vincentwei1021/video-shotcraft
+  Лицензия: Apache License, Version 2.0
+  Полный текст: licenses/video-shotcraft-Apache-2.0.txt
+
+Ниже перечислено, что именно заимствовано и что изменено, как того требует
+раздел 4(b) Apache License 2.0.
+
+
+1. КОД (engine/src/lib/)
+------------------------
+
+engine/src/lib/PageCam.tsx
+  Адаптация template/src/aifl/live/PageCam.tsx.
+  Изменения: размеры вьюпорта и исходника вынесены в пропы viewportW /
+  viewportH / srcW (в оригинале были зафиксированы под горизонтальный кадр
+  1920×1080); добавлена поддержка видео как источника (mediaType='video').
+
+engine/src/lib/DigitRoll.tsx
+  Адаптация template/src/aifl/DigitRoll.tsx.
+  Изменения: длительности пересчитываются под fps композиции.
+
+engine/src/lib/FlashCut.tsx
+  Адаптация template/src/aifl/FlashCut.tsx.
+  Изменения: длительность вспышки пересчитывается под fps композиции.
+
+engine/src/lib/VerticalTicker.tsx
+  Адаптация assets/lib/VerticalTicker.tsx. Этот компонент в самом
+  video-shotcraft отмечен как восходящий к vibe-motion/skills
+  (remotion-3d-ticker).
+  Изменения: содержимое колонок обобщено до ReactNode; высота маски, угол
+  перспективы, scale, ширина колонки и отступы вынесены в пропы.
+
+engine/src/lib/helpers.ts
+  Функции velocityAt, lagged, dampedSettle, mulberry32, handheld — адаптация
+  assets/lib/helpers/{motion,rand,shake}.ts.
+  Изменения: сведены в один модуль, документирующие комментарии переведены
+  на русский. Остальные функции файла (clamp01, cubicBezier,
+  cubicBezierLength, CLAMP, sfxGain, seededSeries) написаны для этого проекта.
+
+Остальные компоненты engine/src/lib/, темы engine/src/themes/, шрифтовый
+модуль и demo-композиции написаны для этого проекта и производными не являются.
+
+
+2. ТЕКСТЫ (library/)
+--------------------
+
+library/INDEX.md, library/index-a.md, library/index-b.md, library/index-c.md,
+library/index-d.md
+  Конспект и разбор 152 карточек приёмов video-shotcraft на русском языке,
+  с собственной оценкой пригодности каждого приёма для вертикального формата
+  1080×1920 и совместимости с пословными субтитрами. Исходные карточки в
+  репозиторий не включены — они берутся из клона первоисточника.
+
+library/components.md, library/energy-arc.md
+  Выжимки из материалов video-shotcraft (библиотека компонентов и методика
+  дуги энергии) с адаптацией под этот конвейер.
+
+
+3. ЗВУКОВЫЕ ЭФФЕКТЫ
+-------------------
+
+Банк SFX (engine/public/shared/sfx/) — подмножество библиотеки
+video-shotcraft. Сами аудиофайлы в этот репозиторий НЕ включены: их
+устанавливает scripts/setup-assets.sh из клона первоисточника.
+Опись (CATALOG.md), замеры пиков и стоп-лист (NOTES.md) — собственная работа.
+
+
+4. ПРОЧИЕ СТОРОННИЕ МАТЕРИАЛЫ
+-----------------------------
+
+Иконки, шрифты, музыка и остальные материалы имеют собственные лицензии,
+перечисленные в LICENSES.md; полные тексты — в папке licenses/.

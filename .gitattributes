@@ -1,0 +1,18 @@
+# Добавлено при установке под Windows (не из кита).
+#
+# У репозитория включена конвертация переводов строк (core.autocrlf), и при
+# следующей выдаче файлов git переписал бы .sh в CRLF. Bash на таком скрипте
+# падает с «$'\r': command not found» — ошибка выглядит мистически, ищется
+# долго. Поэтому всё, что исполняется, жёстко держим в LF.
+*.sh      text eol=lf
+*.mjs     text eol=lf
+*.py      text eol=lf
+
+# Та же болезнь у файлов агентов и скилла: из-за \r\n во frontmatter агент не
+# регистрируется, запуски молча уходят в обход через general-purpose
+# (пруф: reel-build, 2026-10-17). Ошибка не видна ни линтом, ни в логе.
+.claude/agents/*.md      text eol=lf
+.claude/skills/**/*.md   text eol=lf
+tools/bin/head       text eol=lf
+tools/bin/caffeinate text eol=lf
+tools/bin/python3    text eol=lf

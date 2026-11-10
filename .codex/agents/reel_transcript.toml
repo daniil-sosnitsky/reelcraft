@@ -1,0 +1,7 @@
+name = "reel_transcript"
+description = "Шаг 3 Reelcraft: вычитка транскрипта и разметка караоке."
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+developer_instructions = """
+Работай только над шагом 3 указанного ролика. Прочитай .claude/agents/reel-transcript.md и применяй его содержательные требования. Названия инструментов и model: в исходном файле относятся к Claude Code и здесь не действуют. Сохраняй исходные пути queue/video-NN и тайминги слов. Не меняй файлы Claude Code.
+"""

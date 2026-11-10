@@ -1,0 +1,115 @@
+{
+  "name": "Microsoft Fluent Emoji — video-13 selection",
+  "sourceRepository": "https://github.com/microsoft/fluentui-emoji",
+  "license": "MIT",
+  "licenseFile": "LICENSE",
+  "variant": "Color SVG",
+  "rendering": "Use with Remotion Img/staticFile; animate the carrier with useCurrentFrame/interpolate/spring.",
+  "assets": [
+    {
+      "file": "brain.svg",
+      "label": "Brain",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Brain/Color/brain_color.svg",
+      "bytes": 36495,
+      "sha256": "d6966211f67f70be2297b1610e2ff39026651f5048d7803438663bb6f6f2a6c8"
+    },
+    {
+      "file": "clapper.svg",
+      "label": "Clapper board",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Clapper%20board/Color/clapper_board_color.svg",
+      "bytes": 19442,
+      "sha256": "089eb1e444f25077e2a8d98358839f6d89757e9a531df83410b33d1f7337f9a0"
+    },
+    {
+      "file": "cloud.svg",
+      "label": "Cloud",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Cloud/Color/cloud_color.svg",
+      "bytes": 6518,
+      "sha256": "98001f632d91b34b2078fca0cb442664c4315b5fe39860e22131c6553d0d42a2"
+    },
+    {
+      "file": "folder.svg",
+      "label": "File folder",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/File%20folder/Color/file_folder_color.svg",
+      "bytes": 4566,
+      "sha256": "00e73daa809443d63cadefcb2e1d00262d9f1cf5b6ab6223e886ca916ea3e994"
+    },
+    {
+      "file": "globe.svg",
+      "label": "Globe with meridians",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Globe%20with%20meridians/Color/globe_with_meridians_color.svg",
+      "bytes": 11454,
+      "sha256": "ec4450ca111a3a6f017771ac89bfff1e2acd96fef494c5896d30622fcae49158"
+    },
+    {
+      "file": "laptop.svg",
+      "label": "Laptop",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Laptop/Color/laptop_color.svg",
+      "bytes": 74600,
+      "sha256": "b1e1413ef52cc1d8c5883b619d5b724ff3f325baa4539634a75b3d57597cf562"
+    },
+    {
+      "file": "magnifier.svg",
+      "label": "Magnifying glass tilted left",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Magnifying%20glass%20tilted%20left/Color/magnifying_glass_tilted_left_color.svg",
+      "bytes": 8617,
+      "sha256": "381ec02fb4392dfda0870c028af938fa738c32b39b74a2b206c4ca7c00ac832e"
+    },
+    {
+      "file": "microphone.svg",
+      "label": "Studio microphone",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Studio%20microphone/Color/studio_microphone_color.svg",
+      "bytes": 13438,
+      "sha256": "35cdbb62247d08cad69249a72446aabc2e449915fb08834efca37bfe625f7e4b"
+    },
+    {
+      "file": "mouse.svg",
+      "label": "Computer mouse",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Computer%20mouse/Color/computer_mouse_color.svg",
+      "bytes": 6994,
+      "sha256": "d0ffa7e4c0d757c0c778f1208d8a96374dbfe171c909e84fd2af00e6bcb2177b"
+    },
+    {
+      "file": "newspaper.svg",
+      "label": "Newspaper",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Newspaper/Color/newspaper_color.svg",
+      "bytes": 6069,
+      "sha256": "f43efc2afc9c9b8d10781f31349afe1b570e9996487aa018a2e2186c8a2237d5"
+    },
+    {
+      "file": "page.svg",
+      "label": "Page facing up",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Page%20facing%20up/Color/page_facing_up_color.svg",
+      "bytes": 7794,
+      "sha256": "bcf97ca51cce83f09baf1195f033d83f3a6ec3478afc18cfd6bf737b085f6c86"
+    },
+    {
+      "file": "plug.svg",
+      "label": "Electric plug",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Electric%20plug/Color/electric_plug_color.svg",
+      "bytes": 16140,
+      "sha256": "cd8f3fd313618240ff6b79239d529d114752d9f21093f4ebbee1aa2b4cd36746"
+    },
+    {
+      "file": "robot.svg",
+      "label": "Robot",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Robot/Color/robot_color.svg",
+      "bytes": 10026,
+      "sha256": "cf39296b50cd9acee64e1c415dc0a0f6552818e00ff65a316b64c66f8aab0027"
+    },
+    {
+      "file": "satellite.svg",
+      "label": "Satellite",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Satellite/Color/satellite_color.svg",
+      "bytes": 17842,
+      "sha256": "3253c2d2178f73b2df505b55141129e6b42b11bea4788929b7c0e6ce02b53bbc"
+    },
+    {
+      "file": "speech.svg",
+      "label": "Speech balloon",
+      "source": "https://github.com/microsoft/fluentui-emoji/blob/main/assets/Speech%20balloon/Color/speech_balloon_color.svg",
+      "bytes": 6765,
+      "sha256": "3166b258bd24468e8fff08c2bc8215d11f2b819f8ff6b2349b3ffddc9e6935e9"
+    }
+  ]
+}

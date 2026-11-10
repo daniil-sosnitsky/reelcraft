@@ -1,0 +1,28 @@
+{
+  "name": "reelcraft-engine",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "still": "remotion still src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/animation-utils": "4.0.520",
+    "@remotion/cli": "4.0.520",
+    "@remotion/fonts": "4.0.520",
+    "@remotion/layout-utils": "4.0.520",
+    "@remotion/lottie": "4.0.520",
+    "@remotion/motion-blur": "4.0.520",
+    "@remotion/paths": "4.0.520",
+    "@remotion/shapes": "4.0.520",
+    "@remotion/transitions": "4.0.520",
+    "lottie-web": "^5",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.520"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# head отсутствует в этой сборке Git Bash (минимальный MSYS, 356 утилит).
+# Минимальная замена через sed: поддержаны формы `head -1` и `head -n 5`.
+n=10
+case "${1:-}" in
+  -n) n="$2"; shift 2 ;;
+  -[0-9]*) n="${1#-}"; shift ;;
+esac
+if [ $# -eq 0 ]; then sed -n "1,${n}p"; else sed -n "1,${n}p" "$@"; fi

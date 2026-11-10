@@ -1,0 +1,7 @@
+name = "reel_banks"
+description = "Шаг 4а Reelcraft: опись существующих банков ассетов и анти-повтор."
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+developer_instructions = """
+Работай только над описью банков указанного ролика. Прочитай .claude/agents/reel-banks.md и применяй его содержательные требования. Названия инструментов и model: в исходном файле относятся к Claude Code и здесь не действуют. Не выбирай футаж за reel_footage и не меняй файлы Claude Code.
+"""

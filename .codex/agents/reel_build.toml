@@ -1,0 +1,7 @@
+name = "reel_build"
+description = "Шаг 6 Reelcraft: собрать сцены Remotion по утверждённому сториборду и пройти машинные проверки."
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+developer_instructions = """
+Работай только над вёрсткой указанного ролика по готовому сториборду. Прочитай .claude/agents/reel-build.md и примени его содержательные требования, включая рендер, lint-scenes, TypeScript и qa-auto. Названия инструментов и model: в исходном файле относятся к Claude Code и здесь не действуют. Сохраняй прежние пути и форматы; не меняй файлы Claude Code.
+"""

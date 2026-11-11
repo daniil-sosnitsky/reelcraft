@@ -31,13 +31,13 @@ WHISPER_MODEL="${WHISPER_MODEL:-$MODELS_DIR/ggml-large-v3-turbo.bin}"
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 REFERER=$'Referer: https://www.instagram.com/\r\n'
 
-[ -s "$SHORTLIST" ] || { echo "✗ Нет $SHORTLIST — сначала python radar/rank.py"; exit 1; }
+[ -s "$SHORTLIST" ] || { echo "✗ Нет $SHORTLIST — сначала $RC_PY radar/rank.py"; exit 1; }
 [ -f "$WHISPER_MODEL" ] || { echo "✗ Нет модели whisper: $WHISPER_MODEL"; exit 1; }
 mkdir -p "$CLIPS"
 
 # Список «имя<TAB>ссылка» первых TOP кандидатов — разбирает python, потому
 # что JSON в bash не парсится честно.
-python - "$SHORTLIST" "$TOP" <<'PY' > "$CLIPS/_targets.tsv"
+"$RC_PY" - "$SHORTLIST" "$TOP" <<'PY' > "$CLIPS/_targets.tsv"
 import json, sys
 # newline='' обязателен: на Windows python переводит перевод строки в пару
 # CR+LF, и в хвосте ссылки остаётся CR. CDN такую ссылку не отдаёт, а в логе
@@ -90,7 +90,7 @@ while IFS=$'\t' read -r NAME URL <&3; do
   # русскую речь не расшифровывает, а ПЕРЕВОДИТ — текст выглядит нормальным,
   # но это уже не то, что автор сказал, и разбор хука по нему врёт.
   whisper-cli -m "$WHISPER_MODEL" -l auto -oj -of "$CLIPS/_w" "$CLIPS/_w16.wav" >/dev/null 2>&1
-  python - "$CLIPS/_w.json" > "$TXT" <<'PY'
+  "$RC_PY" - "$CLIPS/_w.json" > "$TXT" <<'PY'
 import json, sys
 sys.stdout.reconfigure(encoding='utf-8')
 data = json.load(open(sys.argv[1], encoding='utf-8'))
@@ -98,7 +98,7 @@ print(' '.join(s.get('text', '').strip() for s in data.get('transcription', []))
 PY
   rm -f "$CLIPS/_w16.wav" "$CLIPS/_w.json"
   COUNT=$((COUNT + 1))
-  echo "  ✓ $(python -c "import sys;print(len(open(sys.argv[1],encoding='utf-8').read().split()))" "$TXT") слов"
+  echo "  ✓ $("$RC_PY" -c "import sys;print(len(open(sys.argv[1],encoding='utf-8').read().split()))" "$TXT") слов"
 done 3< "$CLIPS/_targets.tsv"
 
 rm -f "$CLIPS/_targets.tsv"

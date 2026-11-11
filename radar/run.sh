@@ -19,6 +19,7 @@
 #   · цикл выходит сразу, как только тянуть больше нечего.
 set -uo pipefail          # без -e: ненулевой код pull.sh здесь ожидаемый
 cd "$(dirname "$0")/.."
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/tools/env.sh" # прослойка: $RC_PY, ffmpeg на Windows
 
 TOP=8
 ATTEMPTS=5
@@ -41,8 +42,8 @@ echo
 for ((n = 1; n <= ATTEMPTS; n++)); do
   echo "── Попытка $n из $ATTEMPTS ──"
 
-  python radar/fetch.py || { echo "✗ Выгрузка не удалась — дальше смысла нет."; exit 1; }
-  python radar/rank.py  || { echo "✗ Отбор не удался."; exit 1; }
+  "$RC_PY" radar/fetch.py || { echo "✗ Выгрузка не удалась — дальше смысла нет."; exit 1; }
+  "$RC_PY" radar/rank.py  || { echo "✗ Отбор не удался."; exit 1; }
 
   bash radar/pull.sh "$TOP"
   CODE=$?
@@ -65,7 +66,7 @@ done
 # автора, а не продолжаем жечь деньги.
 echo
 echo "✗ $ATTEMPTS попыт(ка/ки) не хватило. Не вытянуто:"
-python - <<'PY'
+"$RC_PY" - <<'PY'
 import json, os, sys
 sys.stdout.reconfigure(encoding='utf-8')
 items = json.load(open('radar/out/shortlist.json', encoding='utf-8'))

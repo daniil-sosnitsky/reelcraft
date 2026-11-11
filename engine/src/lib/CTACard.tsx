@@ -21,7 +21,7 @@ const CL = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 /** Цвет кнопки подписки — из констант канала, независим от палитры темы. */
 export const CTA_BTN_BLUE = CHANNEL.buttonColor;
 
-/** Логотип Telegram на голубом диске. Иконка кита — белый диск,
+/** Логотип Telegram на голубом диске. Иконка каталога приёмов — белый диск,
  *  на светлой теме она сливается с карточкой. */
 const TG_LOGO = 'shared/cta/telegram-round.svg';
 

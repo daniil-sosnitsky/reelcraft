@@ -64,20 +64,37 @@ if ((Test-Path $model) -and ((Get-Item $model).Length -gt 1.5GB)) {
 }
 
 # ── 4. каталог приёмов video-shotcraft ───────────────────────────────────────
-# Кладётся В ПОДПАПКУ skill/: upstream переструктурировали, а кит ссылается
-# на старые пути ../video-shotcraft/skill/... — так они сходятся без патчей.
+# Кладётся В ПОДПАПКУ skill/: upstream переструктурировали репозиторий, а
+# конвейер ссылается на старые пути ../video-shotcraft/skill/... — так они
+# сходятся без правок в шести файлах library/.
+#
+# Клонируем ГИТОМ, а не архивом, и это не вкусовщина: общий банк звуковых
+# эффектов upstream удалил 29.10.2026, и достать его можно только из истории
+# (scripts/setup-assets.sh забирает его из коммита 5a2e98da). У распакованного
+# архива истории нет — звук стал бы недоступен. Архив остаётся запасным путём,
+# если git почему-то недоступен.
 $sc = Join-Path (Split-Path (Split-Path $T -Parent) -Parent) "video-shotcraft\skill"
 if (Test-Path "$sc\references\shots") {
     Say "каталог приёмов уже на месте — пропускаю"
 } else {
-    Say "каталог приёмов video-shotcraft (~48 МБ)…"
-    $zip = "$tmp\shotcraft.zip"
-    Invoke-WebRequest "https://codeload.github.com/Vincentwei1021/video-shotcraft/zip/refs/heads/main" -OutFile $zip -TimeoutSec 1800
-    Expand-Archive $zip "$tmp\sc" -Force
-    $inner = (Get-ChildItem "$tmp\sc" -Directory | Select-Object -First 1).FullName
     New-Item -ItemType Directory -Force (Split-Path $sc -Parent) | Out-Null
-    Copy-Item $inner $sc -Recurse -Force
-    Say "каталог готов"
+    $git = (Get-Command git -ErrorAction SilentlyContinue).Source
+    if ($git) {
+        Say "каталог приёмов video-shotcraft, клон с историей (~60 МБ)…"
+        & $git clone --quiet https://github.com/Vincentwei1021/video-shotcraft $sc
+        if ($LASTEXITCODE -ne 0) { throw "git clone каталога приёмов не удался (код $LASTEXITCODE)" }
+        Say "каталог готов (история на месте — звук восстановим)"
+    } else {
+        Say "git не найден; беру каталог приёмов архивом (~48 МБ)…"
+        $zip = "$tmp\shotcraft.zip"
+        Invoke-WebRequest "https://codeload.github.com/Vincentwei1021/video-shotcraft/zip/refs/heads/main" -OutFile $zip -TimeoutSec 1800
+        Expand-Archive $zip "$tmp\sc" -Force
+        $inner = (Get-ChildItem "$tmp\sc" -Directory | Select-Object -First 1).FullName
+        Copy-Item $inner $sc -Recurse -Force
+        Write-Host "  ! Без истории: банк звуковых эффектов из неё не достать." -ForegroundColor Yellow
+        Write-Host "    Поставь git и переклонируй каталог, либо подбери эффекты"
+        Write-Host "    сам — оба способа печатает scripts/setup-assets.sh."
+    }
 }
 
 # ── 5. зависимости движка и звуковые банки ───────────────────────────────────
@@ -101,7 +118,16 @@ if ($bash) {
     # Путь в POSIX-виде: D:\…\setup-assets.sh → /d/…/setup-assets.sh
     $sh = "$proj\scripts\setup-assets.sh" -replace '\\', '/' -replace '^([A-Za-z]):', '/$1'
     $sh = $sh.Substring(0, 2).ToLower() + $sh.Substring(2)
-    & $bash $sh 2>&1 | Select-Object -Last 6
+    # Код возврата проверяем обязательно: раньше шаг мог упасть (нет описи,
+    # нет банка в клоне), а скрипт всё равно писал «ГОТОВО» — и человек узнавал
+    # об отсутствии звука только на первом ролике.
+    & $bash $sh 2>&1 | Select-Object -Last 14
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "  ! Звуковые банки НЕ установлены (setup-assets.sh вернул $LASTEXITCODE)." -ForegroundColor Yellow
+        Write-Host "    Прочитай его вывод выше и запусти повторно в Git Bash:"
+        Write-Host "    scripts/setup-assets.sh"
+        $script:assetsFailed = $true
+    }
 } else {
     Write-Host "  ! bash не найден — звуковые банки не поставлены." -ForegroundColor Yellow
     Write-Host "    Поставь Git for Windows (вместе с Git Bash) и запусти в Git Bash:"
@@ -110,7 +136,14 @@ if ($bash) {
 
 Remove-Item $tmp -Recurse -Force -ErrorAction SilentlyContinue
 Write-Host ""
-Write-Host "ГОТОВО. Осталось руками:" -ForegroundColor Green
+if ($script:assetsFailed) {
+    Write-Host "ИНСТРУМЕНТЫ ГОТОВЫ, НО ЗВУК НЕ ПОСТАВЛЕН — см. предупреждение выше." -ForegroundColor Yellow
+} else {
+    Write-Host "ГОТОВО." -ForegroundColor Green
+}
+Write-Host "Осталось руками:"
 Write-Host "  • 4-5 треков с mixkit.co в engine\public\shared\bgm\"
-Write-Host "  • чистый скрин шапки канала в engine\public\shared\cta\tg-channel.jpg"
+Write-Host "  • свой круглый аватар канала в engine\public\shared\cta\avatar.png"
+Write-Host "    и чистый скрин шапки в engine\public\shared\cta\tg-channel.jpg"
+Write-Host "    (сейчас там серые заглушки — рендер пройдёт, но в кадр их не выпускают)"
 Write-Host "  • патчи монтажного стола — ветка W3 в INSTALL.md"

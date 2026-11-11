@@ -111,7 +111,7 @@ HEIGHT and scale on the canvas — only the pose and arms change.
 Это делает агент, попроси его. По шагам:
 
 1. вырезать магенту в альфу с антиалиасингом по краю —
-   `python tools/character-cutout.py <папка с картинками>`;
+   `python3 tools/character-cutout.py <папка с картинками>`;
 2. привести все десять к единому холсту **1056×1140**, выравнивая по макушке
    и по центру, чтобы персонаж не прыгал при смене позы;
 3. проверить каждую глазами и положить в `engine/public/shared/character/`
@@ -121,4 +121,4 @@ HEIGHT and scale on the canvas — only the pose and arms change.
 
 Пока своих поз нет, в папке лежат нейтральные серые силуэты — движок с ними
 запускается и контрольный рендер проходит, но в ролик такое не выпустишь.
-Перерисовать заглушки заново: `python tools/make-placeholder-poses.py`.
+Перерисовать заглушки заново: `python3 tools/make-placeholder-poses.py`.

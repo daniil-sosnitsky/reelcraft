@@ -50,14 +50,14 @@ Apify берёт примерно $2–3 за 1000 результатов. Пр�
 результатов будет, и дождаться «ок». Посмотреть запрос, ничего не отправляя:
 
 ```bash
-python radar/fetch.py --dry
+python3 radar/fetch.py --dry
 ```
 
 Боевой прогон:
 
 ```bash
-python radar/fetch.py                 # окно и лимиты из radar/accounts.json
-python radar/fetch.py --days 30 --limit 20   # если нужен прогон подешевле
+python3 radar/fetch.py                 # окно и лимиты из radar/accounts.json
+python3 radar/fetch.py --days 30 --limit 20   # если нужен прогон подешевле
 ```
 
 Токен берётся из `reelcraft/.env` (в git не попадает). Нет токена — скрипт
@@ -66,7 +66,7 @@ python radar/fetch.py --days 30 --limit 20   # если нужен прогон 
 ## Шаг 2. Отбор по метрике
 
 ```bash
-python radar/rank.py
+python3 radar/rank.py
 ```
 
 Считает по каждому аккаунту медиану просмотров и коэффициент выброса

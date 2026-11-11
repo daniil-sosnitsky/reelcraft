@@ -31,10 +31,10 @@
 
 ```bash
 # пересобрать карточки кода (после изменения radar/accounts.json или run.sh)
-python scripts/screen-cards/build.py
+python3 scripts/screen-cards/build.py
 
 # пересобрать обезличенные таблицы (после нового прогона радара)
-python scripts/screen-cards/build_anon.py
+python3 scripts/screen-cards/build_anon.py
 ```
 
 HTML превращается в PNG скриншотом headless-браузера; ширина карточки —

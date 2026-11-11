@@ -48,7 +48,7 @@ if [ -f "$INPUT" ]; then
 else
   echo "→ Качаю по ссылке (yt-dlp)…"
   # Склейка лучшего видео и аудио в mp4: дальше всё считается по одному файлу.
-  python -m yt_dlp -q --no-warnings \
+  "$RC_PY" -m yt_dlp -q --no-warnings \
     -f 'bv*+ba/b' --merge-output-format mp4 \
     -o "$SRC" "$INPUT" \
     || { echo "✗ Не скачалось. Приватный аккаунт или нужна авторизация — пришли файлом."; exit 1; }
@@ -146,7 +146,7 @@ if [ -n "$HAS_AUDIO" ]; then
       ffmpeg -nostdin -y -loglevel error -i "$DIR/_audio.wav" -ar 16000 -ac 1 "$DIR/_w16.wav"
       whisper-cli -m "$MODEL" -l auto -oj -of "$DIR/_w" "$DIR/_w16.wav" >/dev/null 2>&1 || true
       if [ -s "$DIR/_w.json" ]; then
-        python - "$DIR/_w.json" "$DIR/transcript.txt" <<'PY'
+        "$RC_PY" - "$DIR/_w.json" "$DIR/transcript.txt" <<'PY'
 import json, sys
 src, dst = sys.argv[1], sys.argv[2]
 d = json.load(open(src, encoding='utf-8'))
@@ -157,7 +157,7 @@ with open(dst, 'w', encoding='utf-8') as f:
         f.write(f"[{t}] {s.get('text','').strip()}\n")
 print(sum(len(s.get('text','').split()) for s in segs))
 PY
-        WORDS=$(python - "$DIR/_w.json" <<'PY'
+        WORDS=$("$RC_PY" - "$DIR/_w.json" <<'PY'
 import json, sys
 d = json.load(open(sys.argv[1], encoding='utf-8'))
 print(sum(len(s.get('text','').split()) for s in d.get('transcription', [])))

@@ -1,4 +1,4 @@
-# Добавлено при установке под Windows (не из кита).
+# Добавлено при установке под Windows (не из базового комплекта).
 #
 # У репозитория включена конвертация переводов строк (core.autocrlf), и при
 # следующей выдаче файлов git переписал бы .sh в CRLF. Bash на таком скрипте
@@ -16,3 +16,8 @@
 tools/bin/head       text eol=lf
 tools/bin/caffeinate text eol=lf
 tools/bin/python3    text eol=lf
+
+# Опись состава SFX-банка читается построчно из bash (scripts/setup-assets.sh).
+# В CRLF у каждого пути появился бы хвостовой \r, и восстановление банка нашло
+# бы ноль файлов из 106 — молча, потому что путь с \r просто «не существует».
+engine/public/shared/sfx/SFX-FILES.txt text eol=lf

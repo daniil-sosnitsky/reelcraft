@@ -10,9 +10,17 @@ description: Конвейер вертикальных роликов на Remot
 1–28, банки, QA, чистка).
 Этот файл — только порядок работы.
 
-Проект: **корень этого репозитория** — все команды ниже выполняются
-из его корня, в Git Bash. Машина Windows: особенности окружения и чем
-подменены macOS-утилиты — `tools/WINDOWS.md`.
+Проект: `<ПУТЬ_К_ПРОЕКТУ>` — все команды ниже выполняются **из этой папки**.
+
+> ⚠️ Строку выше заполняет установка (`INSTALL.md`, шаг 9): вместо
+> `<ПУТЬ_К_ПРОЕКТУ>` ставится абсолютный путь папки конвейера — например
+> `/Users/me/reelcraft` или `/d/projects/reelcraft`. Скилл живёт в домашней
+> папке агента, а не в репозитории, и без этой строки он не знает, где лежит
+> проект. Не заполнено — спроси человека и впиши, прежде чем что-то запускать.
+
+Оболочка: на macOS и Linux любая, на Windows — **Git Bash** (не PowerShell:
+скрипты конвейера на bash). Чем на Windows подменены macOS-утилиты и какие
+грабли там вылезают — `tools/WINDOWS.md`.
 
 **Тема по умолчанию — Sticker Light** (`library/light-theme.md`). Фирменная
 зелёная **Emerald** (`library/emerald-theme.md`) — по словам «зелёная»,
@@ -58,7 +66,9 @@ adaptive (`library/adaptive-theme.md`) или две темы — только �
 
 2. **Слот.** `scripts/queue-add.sh inbox/NAME-prep.mp4 NN` — номер ЯВНО
    (параллельные сессии, раздел «Параллельная сборка» в CLAUDE.md).
-   Whisper large-v3-turbo с глоссарием `scripts/whisper-glossary.txt`.
+   Whisper large-v3-turbo с глоссарием `scripts/whisper-glossary.txt`
+   (в комплекте — термины ИИ-ниши; подставь свои, Whisper путает именно
+   те слова, которые для твоей темы ключевые).
    Даёт `queue/video-NN/`: `audio.wav`, `transcript.json`,
    `captions.generated.ts`, `meta.txt`.
 
@@ -229,7 +239,7 @@ adaptive (`library/adaptive-theme.md`) или две темы — только �
   **260 млн токенов — 49% расхода за сутки**, и оба подменных прогона вернули
   пустой отчёт.
 - **Бюджет ролика — 150 млн входных токенов.** Замер:
-  `python scripts/token-report.py` (сутки) или `--session <id>`. Вышли за
+  `python3 scripts/token-report.py` (сутки) или `--session <id>`. Вышли за
   бюджет — это находка для разбора в `library/used-log.md`, а не норма.
 - **Команды склеивать.** Проверки идут одним вызовом через `&&`
   (`node scripts/lint-scenes.mjs NN && (cd engine && npx tsc --noEmit)`),

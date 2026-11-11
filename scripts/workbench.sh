@@ -7,7 +7,7 @@
 #   ./scripts/workbench.sh --stop        # погасить dev server
 #
 # Что делает: переписывает engine/src/workbench.ts на опись нужного ролика
-# и зовёт open.mjs кита — тот линкует engine/src и engine/public в стол,
+# и зовёт open.mjs каталога приёмов — тот линкует engine/src и engine/public в стол,
 # поднимает vite на 5198 и открывает браузер с разобранным роликом.
 #
 # Почему не зовём open.mjs напрямую: он написан под macOS. Опознать «свой»
@@ -19,18 +19,37 @@ set -euo pipefail
 RC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 . "$RC/tools/env.sh" # Windows-прослойка, см. tools/WINDOWS.md
 
-WB="$RC/../video-shotcraft/skill/workbench"
+# Стол живёт в клоне каталога приёмов. По умолчанию клон лежит рядом с
+# проектом (INSTALL.md, шаг 3). Держишь клон в другом месте — задай
+# RC_WORKBENCH в профиле оболочки, править скрипт не нужно:
+#   export RC_WORKBENCH="/путь/к/video-shotcraft/workbench"
+WB="${RC_WORKBENCH:-$RC/../video-shotcraft/skill/workbench}"
 PORT=5198
 PIDFILE="$WB/.dev.pid"
 
 # ── Погасить dev server стола (свой, по .dev.pid + сверке командной строки) ─
+# Сверка идёт через WMI, то есть только на Windows: на macOS и Linux лаунчер
+# стола гасит свой сервер сам (он опознаёт его через `ps`). Поэтому на не-Windows
+# просто чистим .dev.pid — без этой ветки `--stop` падал с «powershell.exe:
+# command not found», потому что скрипт идёт под set -e.
 stop_server() {
   [ -f "$PIDFILE" ] || return 0
   local pid cmd
   pid="$(tr -d '[:space:]' <"$PIDFILE")"
   [ -n "$pid" ] || return 0
+
+  case "$(uname -s)" in
+    MINGW* | MSYS* | CYGWIN*) ;;
+    *)
+      kill "$pid" 2>/dev/null && echo "[workbench] dev server остановлен (pid $pid)" \
+        || echo "[workbench] pid $pid уже не живёт, чищу .dev.pid"
+      rm -f "$PIDFILE"
+      return 0
+      ;;
+  esac
+
   cmd="$(powershell.exe -NoProfile -Command \
-    "(Get-CimInstance Win32_Process -Filter \"ProcessId=$pid\").CommandLine" 2>/dev/null | tr -d '\r')"
+    "(Get-CimInstance Win32_Process -Filter \"ProcessId=$pid\").CommandLine" 2>/dev/null | tr -d '\r' || true)"
   if printf '%s' "$cmd" | grep -q "vite"; then
     powershell.exe -NoProfile -Command "Stop-Process -Id $pid -Force" >/dev/null 2>&1 || true
     echo "[workbench] dev server остановлен (pid $pid)"
@@ -63,7 +82,7 @@ if [ -n "${1:-}" ]; then
     exit 2
   }
   REL="./videos/$(basename "$(dirname "$DESC")")/workbench"
-  python - "$ENTRY" "$REL" <<'PY'
+  "$RC_PY" - "$ENTRY" "$REL" <<'PY'
 import io, re, sys
 path, rel = sys.argv[1], sys.argv[2]
 s = io.open(path, encoding='utf-8').read()
